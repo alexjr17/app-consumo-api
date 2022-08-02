@@ -25,6 +25,7 @@
 <script>
 import TableComponent from '@/components/TableComponent.vue'
 import tdComponent from '@/components/table/tdComponent.vue'
+import {mapGetters} from 'vuex'
 export default {
     components: {
         TableComponent,
@@ -33,12 +34,16 @@ export default {
     data() {
         return {
             items: ['id' ,'title', 'precio', 'imagen', 'description'],
-            productos: []
         }
+    },
+    computed: {
+        ...mapGetters({
+            productos : 'productos'
+        })
     },
     async mounted() {
         try {
-            this.productos = await this.$store.dispatch('get_productos')
+            await this.$store.dispatch('get_productos')
         } catch (err) {
             console.log(err)
         }

@@ -52,14 +52,19 @@
 import ModalComponent from '@/components/ModalComponent.vue'
 import InputComponent from '@/components/forms/InputComponent.vue'
 import ButtonComponent from '@/components/ButtonComponent.vue'
+import {mapGetters} from 'vuex'
 export default {
     data() {
         return {
             name: 'xiaomi',
-            catalogo: [],
             producto: [],
             show: false
         }
+    },
+    computed: {
+        ...mapGetters({
+            catalogo : 'catalogo'
+        })
     },
     components: {
         // CardComponent,
@@ -69,7 +74,7 @@ export default {
     },
     methods: {
         async search() {
-            this.catalogo = await this.$store.dispatch('search_producto', this.name)
+            await this.$store.dispatch('search_producto', this.name)
             console.log(this.catalogo);
         },
         async getProducto(id) {
@@ -88,6 +93,7 @@ export default {
                 await this.$store.dispatch('store_producto', formData)
                 this.show = !this.show
                 alert('registro guardado!')
+                this.$router.push({name: 'productos.index'})
             } catch (error) {
                 console.log(error)
                 alert('no se pudo  guardado!')
