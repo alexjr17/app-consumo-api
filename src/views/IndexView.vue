@@ -36,8 +36,8 @@
                         :src="image.url"                         
                         class="w-40 h-40 object-center object-cover rounded-md hadow-md">
                 </div>
-                <article class="bg-blue-500 rounded-lg p-2 flex w-auto">
-                    <!-- <p>{{producto.descriptions.plain_text}}</p> -->
+                <article class="bg-blue-500 rounded-lg p-2 flex w-auto max-h-40 overflow-auto">
+                    <p>{{producto.descriptions.plain_text}}</p>
                 </article>
                 <button-component 
                     value="Guardar"
