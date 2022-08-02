@@ -86,6 +86,8 @@ export default {
             formData.append("description", this.producto.alex.plain_text);
             try {
                 await this.$store.dispatch('store_producto', formData)
+                this.show = !this.show
+                alert('registro guardado!')
             } catch (error) {
                 console.log(error)
             }
