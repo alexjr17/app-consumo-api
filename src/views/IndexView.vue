@@ -14,7 +14,6 @@
                 </div>
                 <h3 class="mt-6 text-sm text-gray-500">
                     <a href="#">
-                    <span class="absolute inset-0"></span>
                     {{producto.title}}
                     </a>
                     {{producto.price}}
@@ -38,7 +37,7 @@
                         class="w-full h-full object-center object-cover rounded-md hadow-md">
                 </div>
                 <article class="bg-blue-500 rounded-lg p-2 flex w-auto">
-                    <p>{{producto.alex.plain_text}}</p>
+                    <!-- <p>{{producto.alex.plain_text}}</p> -->
                 </article>
                 <button-component 
                     value="Guardar"
@@ -78,8 +77,18 @@ export default {
             this.producto = await this.$store.dispatch('get_producto', id)
             this.producto.alex = await this.$store.dispatch('descripcion', id)
         },
-        storeProducto() {
-            alert('falto crear el backe-end para guardar')
+        async storeProducto() {
+            alert(this.producto.pictures[0]['url']);
+            let formData = new FormData();
+            formData.append("title", this.producto.title);
+            formData.append("price", this.producto.price);
+            formData.append("image", this.producto.pictures[0]['url']);
+            formData.append("description", this.producto.alex.plain_text);
+            try {
+                await this.$store.dispatch('store_producto', formData)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 

@@ -1,25 +1,29 @@
-import api from './api'
+import apiMercadolibre from './api-mercado-libre.js'
+import apiLaravel from './api-laravel.js'
 
 export default 
     {
         tokenSession(){
-            return api.get('/sanctum/csrf-cookie');
+            return apiLaravel.get('/sanctum/csrf-cookie');
         },
 
         // ----------
         // productos
         // ----------
         store_producto(params){
-            return api.post('api/productos', params);
+            return apiLaravel.post('/api/productos', params);
+        },
+        get_productos(){
+            return apiLaravel.get('/api/productos');
         },
         search_producto(name){
-            return api.get(`sites/MCO/search?q=${name}`);
+            return apiMercadolibre.get(`sites/MCO/search?q=${name}`);
         },
         get_producto(id){
-            return api.get(`items/${id}`);
+            return apiMercadolibre.get(`items/${id}`);
         },
         descripcion(id){
-            return api.get(`items/${id}/description`);
+            return apiMercadolibre.get(`items/${id}/description`);
         }
 
     }

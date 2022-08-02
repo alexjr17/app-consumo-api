@@ -2,15 +2,20 @@ import { createStore } from 'vuex'
 import repository from '@/api/repository'
 export default createStore({
     actions: {
-      async pag_productos({commit}, pag) {
-        const {data} = await repository.pag_productos(pag);
-        console.log(data);
-        commit('SET_PRODUCTOS',data);
+      async tokenSession(){
+        await repository.tokenSession();
       },
-      async store_producto(_, params) {
-        console.log(params);
+      async get_productos() {
+        this.dispatch('tokenSession')
+        const {data} = await repository.get_productos();
+        console.log(data);
+        return data;
+      },
+      async store_producto({dispatch}, params) {
+        dispatch('tokenSession')
         const {data} = await repository.store_producto(params);
         console.log(data);
+        return data;
       },
       async search_producto(_, name) {
         const {data} = await repository.search_producto(name);
