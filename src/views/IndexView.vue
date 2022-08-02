@@ -31,13 +31,13 @@
             <div class="grid grid-cols-1 gap-3 my-3">
                 <h1>Producto: {{producto.title}}</h1>
                 <span>Precio: {{producto.price}}</span>
-                <div class="flex flex-row gap-3">
+                <div class="flex flex-row gap-3 overflow-auto ">
                     <img v-for="image in producto.pictures" :key="image"
                         :src="image.url"                         
-                        class="w-full h-full object-center object-cover rounded-md hadow-md">
+                        class="w-40 h-40 object-center object-cover rounded-md hadow-md">
                 </div>
                 <article class="bg-blue-500 rounded-lg p-2 flex w-auto">
-                    <!-- <p>{{producto.alex.plain_text}}</p> -->
+                    <!-- <p>{{producto.descriptions.plain_text}}</p> -->
                 </article>
                 <button-component 
                     value="Guardar"
@@ -80,7 +80,7 @@ export default {
         async getProducto(id) {
             this.show = !this.show
             this.producto = await this.$store.dispatch('get_producto', id)
-            this.producto.alex = await this.$store.dispatch('descripcion', id)
+            this.producto.descriptions = await this.$store.dispatch('descripcion', id)
         },
         async storeProducto() {
             let formData = new FormData();
