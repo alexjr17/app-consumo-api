@@ -83,7 +83,6 @@ export default {
             this.producto.alex = await this.$store.dispatch('descripcion', id)
         },
         async storeProducto() {
-            alert(this.producto.pictures[0]['url']);
             let formData = new FormData();
             formData.append("title", this.producto.title);
             formData.append("price", this.producto.price);
