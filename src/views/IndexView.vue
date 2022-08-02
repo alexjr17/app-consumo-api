@@ -90,6 +90,7 @@ export default {
                 alert('registro guardado!')
             } catch (error) {
                 console.log(error)
+                alert('no se pudo  guardado!')
             }
         }
     }
