@@ -87,7 +87,7 @@ export default {
             formData.append("title", this.producto.title);
             formData.append("price", this.producto.price);
             formData.append("image", this.producto.pictures[0]['url']);
-            formData.append("description", this.producto.alex.plain_text);
+            formData.append("description", this.producto.descriptions.plain_text);
             try {
                 await this.$store.dispatch('store_producto', formData)
                 this.show = !this.show
