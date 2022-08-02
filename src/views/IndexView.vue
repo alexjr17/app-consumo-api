@@ -1,5 +1,5 @@
 <template>
-    <div class="container m-auto flex flex-col gap-6 mx-6">
+    <div class="flex flex-col gap-6 mx-6">
         <div class="flex flex-row  mt-3">
             <input-component class="grow"
                 v-model="name"/>
